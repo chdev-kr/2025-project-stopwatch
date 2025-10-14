@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Stopwatch() {
   // 시작한 시간
@@ -61,6 +61,19 @@ export default function Stopwatch() {
     // 예시: [1000, 2000] → [1000, 2000, 3000]
     setLaps([secondsPassed, ...laps]);
   }
+
+  useEffect(() => {
+    if (isRunning) {
+      document.title = `${(secondsPassed / 1000).toFixed(1)}초 - Stopwatch`;
+    } else {
+      // 정지 중일 때: 원래 제목으로
+      document.title = "Stopwatch";
+    }
+
+    return () => {
+      document.title = `Stopwatch`;
+    };
+  }, [isRunning, secondsPassed]);
 
   return (
     <>
