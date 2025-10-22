@@ -1,0 +1,218 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* 커스텀 폰트 정의 */
+@font-face {
+  font-family: "AnnoyingCarrot";
+  src: url("../fonts/AnnoyingCarrot_minjoo.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 폰트 로딩 최적화 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "AnnoyingCarrot", sans-serif;
+  color: #594123;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+/* 제목과 도움말 버튼 컨테이너 */
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* 도움말 버튼 스타일 */
+.help-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: gainsboro;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* line-height은 제거 */
+  position: relative;
+}
+
+.help-button > span {
+  font-size: 15px;
+  color: #594123;
+}
+
+.help-button:hover {
+  background-color: #f7bebc;
+  transform: scale(1.1);
+}
+
+/* 설명 박스 스타일 */
+.description-box {
+  background-color: #f8f9fa;
+  border: 2px solid #f7bebc;
+  animation: slideDown 0.3s ease-out;
+}
+
+.description-box .describe {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-weight: 500;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* 설명 박스 나타나는 애니메이션 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h3 {
+  display: block;
+  justify-content: left;
+  align-items: left;
+}
+/* canvas */
+#canvas {
+  margin-top: 2rem;
+  width: 320px;
+}
+
+.time {
+  font-size: 55px;
+}
+.section_group {
+  border: 1px solid rgb(221, 221, 221);
+  width: 320px;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  gap: 0.5rem;
+}
+
+.section_group > h2 {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 버튼들을 가로 중앙에 배치 */
+  gap: 1rem; /* 버튼들 사이의 간격 */
+  width: 100%;
+}
+
+button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  gap: 1rem;
+  background-color: #f7bebc;
+}
+
+button:disabled {
+  color: rgb(103, 96, 96);
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+.count {
+  display: flex;
+  gap: 2rem;
+}
+
+.count_number {
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 5px;
+  padding: 4px;
+  background-color: #e5d6c5;
+}
+/* 특정 요소에만 커스텀 폰트 적용 */
+.custom-font {
+  font-family: "AnnoyingCarrot", sans-serif;
+}
+
+/* 스톱워치 타이머에만 폰트 적용 */
+.timer-display {
+  font-family: "AnnoyingCarrot", sans-serif;
+  font-size: 2.4rem;
+  font-weight: bold;
+}

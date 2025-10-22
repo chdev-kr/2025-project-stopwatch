@@ -18,6 +18,7 @@ export default function Stopwatch() {
   const [isRunning, setIsRunning] = useState(false);
   const [stopCount, setStopCount] = useState(0);
   const [startCount, setStartCount] = useState(0);
+  const [showDescription, setShowDescription] = useState(false); // 설명 표시 상태
 
   function handleStart() {
     setIsRunning(true);
@@ -39,7 +40,7 @@ export default function Stopwatch() {
 
   function handleStop() {
     setIsRunning(false);
-    // clearInterval: "setInterval 반복 실행 멈춰!"
+    // clearInterval: "setInterval 반복 실행 멈추기"
     // intervalId.current에 저장된 ID를 가진 setInterval을 정지시킴
     clearInterval(intervalId.current);
     setStopCount((prev) => prev + 1);
@@ -62,6 +63,11 @@ export default function Stopwatch() {
     setLaps([secondsPassed, ...laps]);
   }
 
+  // 설명 표시/숨김 토글 함수
+  function toggleDescription() {
+    setShowDescription(!showDescription);
+  }
+
   useEffect(() => {
     if (isRunning) {
       document.title = `${(secondsPassed / 1000).toFixed(1)}초 - Stopwatch`;
@@ -77,29 +83,53 @@ export default function Stopwatch() {
 
   return (
     <>
-      <h1>Time passed: {(secondsPassed / 1000).toFixed(3)}</h1>
-      <button onClick={handleStart} disabled={isRunning}>
-        Start
-      </button>
-      <button onClick={handleStop} disabled={!isRunning}>
-        Stop
-      </button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleLap} disabled={!isRunning}>
-        Lap
-      </button>
-      <p>상태: {isRunning ? "⏱️ 실행 중" : "⏸️ 정지"}</p>
-      <p>시작 횟수: {startCount}회</p>
-      <p>일시정지 횟수: {stopCount}회</p>
-
-      <div>
-        <h2>Lap Times</h2>
-        {laps.map((lap, index) => (
-          <p key={index}>
-            Lap {laps.length - index} : {(lap / 1000).toFixed(3)}초
-          </p>
-        ))}
+      <div className="title-container">
+        <h2>주더지 스톱워치</h2>
+        <button className="help-button" onClick={toggleDescription}>
+          <span>?</span>
+        </button>
       </div>
+      {showDescription && (
+        <section className="section_group description-box">
+          <p className="describe">
+            '주더지'란? <br></br> ‘민주’와 ‘두더지’를 합쳐 만든 이름으로,
+            민주님께서 공유해주신 3D 모델과 폰트에 대한 감사의 마음을
+            담았습니다.
+          </p>
+        </section>
+      )}
+      <section className="section_group">
+        <h3 className="time">{(secondsPassed / 1000).toFixed(3)}초</h3>
+        <div className="btns">
+          {isRunning ? (
+            <button onClick={handleStop}>중지</button>
+          ) : (
+            <button onClick={handleStart}>시작</button>
+          )}
+          <button onClick={handleReset}>리셋</button>
+          <button onClick={handleLap} disabled={!isRunning}>
+            Lap
+          </button>
+        </div>
+      </section>
+      <section className="section_group">
+        <h3>대시보드</h3>
+        <p>[상태 확인]: {isRunning ? "실행 중" : "정지"}</p>
+        <div className="count">
+          <p className="count_number">시작 횟수: {startCount}회</p>
+          <p className="count_number">일시정지 횟수: {stopCount}회</p>
+        </div>
+      </section>
+      <section className="section_group">
+        <div>
+          <h3>Lap Times</h3>
+          {laps.map((lap, index) => (
+            <p key={index}>
+              Lap {laps.length - index} : {(lap / 1000).toFixed(3)}
+            </p>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
