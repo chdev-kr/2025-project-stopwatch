@@ -96,6 +96,7 @@ h2 {
 .help-button > span {
   font-size: 15px;
   color: #594123;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui;
 }
 
 .help-button:hover {
